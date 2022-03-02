@@ -5,17 +5,26 @@ const app = express();
 
 dotenv.config({ path: './config.env' });
 require('./db/conn');
-//DB and PORT is in config.env which will not upload on github
+
+app.use(express.json());
+// const User = require('./model/userSchema');
+
+//we link the router file to make our route easy
+app.use(require('./router/auth'));
+
+//DB and PORT is in config.env to make then secure(so that no one knows)
 const PORT = process.env.PORT;
+
 
 // Middleware
 const middleware = (req, res, next) => {
     console.log('hello my middleware');
+    next();
 }
 
-app.get('/', (req, res) => {
-    res.send('HOME');
-});
+// app.get('/', (req, res) => {
+//     res.send('hello from server app js');
+// });
 app.get('/about', middleware, (req, res) => {
     res.send('ABOUT');
 });

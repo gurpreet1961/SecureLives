@@ -1,0 +1,188 @@
+main .insights {
+  position: relative;
+  /* display: grid;
+  
+  grid-template-columns: repeat(); */
+  /* gap: 1rem; */
+  display: flex;
+  overflow-x: auto;
+  /* width: 80vw; */
+}
+.RemaingAmount {
+  color: red;
+  font-size: large;
+}
+.leftScrollbtn,
+.rightScrollbtn {
+  position: absolute;
+  width: 2erem;
+  height: 34rem;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.rightScrollbtn:hover {
+  left: 95rem;
+}
+.insights::-webkit-scrollbar {
+  height: 0;
+  width: 0;
+}
+.rightScrollbtn:hover > span,
+.leftScrollbtn:hover > span,
+.leftScrollbtn:hover {
+  left: -5rem;
+  font-size: 8rem;
+}
+
+.leftScrollicon,
+.rightScrollicon {
+  font-size: 4rem;
+}
+.leftScrollbtn {
+  top: 2%;
+  left: -2rem;
+}
+.rightScrollbtn {
+  top: 2%;
+  right: -2.5rem;
+}
+.activeDonation {
+  width: 100rem;
+  margin-left: 1rem;
+}
+main .insights > div {
+  background-color: #131418;
+  padding: var(--card-padding);
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--box-shadow);
+
+  transition: all 300ms ease;
+}
+.DonationImg img {
+  width: 25rem;
+  border-radius: var(--card-border-radius);
+}
+main .insights > div:hover {
+  box-shadow: none;
+}
+
+main .insights > div .middle {
+  margin-top: 2rem;
+  display: flex;
+  /* flex-direction: row; */
+  align-items: center;
+  justify-content: space-between;
+}
+
+main .insights h3 {
+  margin: 1rem 0 0.6rem;
+  font-size: 1rem;
+}
+main .insights .donationCompletion {
+  position: relative;
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+}
+main .insights svg {
+  width: 7rem;
+  height: 7rem;
+}
+
+main .insights svg circle {
+  fill: none;
+  stroke: var(--color-primary);
+  stroke-width: 14;
+  stroke-linecap: round;
+  transform: translate(5px, 5px);
+  stroke-dashoffset: -30;
+  stroke-dasharray: 200;
+}
+main .insights .donationCompletion .percentage {
+  position: absolute;
+  top: 2.5rem;
+  left: 2.5rem;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+.activeDonation button {
+  margin-top: 1rem;
+  background-color: var(--color-primary);
+  border: none;
+  outline: none;
+  padding: 1rem 2rem;
+  border-radius: var(--card-border-radius);
+  transition: all 500ms ease;
+}
+.activeDonation button:hover {
+  background-color: #40446b;
+  border: 2px solid #6a75df;
+  color: white;
+  font-size: large;
+}
+main .homeTables {
+  display: grid;
+  grid-template-columns: 68% auto;
+  font-size: medium;
+  font-weight: bold;
+  /* grid-gap: 1rem; */
+}
+main .TableStyle {
+  width: 98%;
+
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+main .TableStyle h2 {
+  margin-bottom: 1rem !important;
+}
+
+main .TableStyle table {
+  background-color: #131418;
+  width: 100%;
+  /* border-radius: var(--card-border-radius);
+   */
+  border-radius: 10px;
+  /* padding: var(--card-padding) !important; */
+  /* padding: 1rem; */
+  text-align: center;
+  box-shadow: var(--box-shadow);
+  transition: all 300ms ease;
+}
+
+main .TableStyle table:hover {
+  box-shadow: none;
+}
+
+main .TableStyle table tbody td {
+  height: 2.8rem;
+  border-bottom: 1px solid var(--color-light);
+  color: var(--color-dark-variant);
+}
+
+main .TableStyle table tbody tr:last-child {
+  border: none;
+}
+main .TableStyle table tbody .donationDone {
+  color: var(--color-success);
+  /* indianred */
+}
+
+main .TableStyle table tbody .TableName {
+  color: cadetblue;
+}
+main .TableStyle table tbody .TableDays {
+  color: #6a75df;
+}
+main .TableStyle table tbody .TablePayment {
+  color: indianred;
+}
+main .TableStyle h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+}

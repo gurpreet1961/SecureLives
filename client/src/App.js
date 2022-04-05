@@ -1,29 +1,39 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import Navbar from './Components/Navbar'
 import Home from './Components/Home'
-import About from './Components/About'
+import Profile from './Components/Profile'
 import Contact from './Components/Contact'
 import Login from './Components/Login'
-import Signup from './Components/Signup'
+import "./App.css";
+import Fundraise from './Components/Fundraise'
+import Donation from './Components/Donation'
+import "./App.css";
 const App = () => {
   return (
     <>
-      <Navbar />
       <Route exact path="/">
         <Home />
       </Route>
-      <Route path="/about">
-        <About />
+      <Route exact path="/home">
+        <Home />
       </Route>
-      <Route path="/contact">
+      <Route exact path="/profile">
+        <Profile />
+      </Route>
+      <Route exact path="/contact">
         <Contact />
       </Route>
-      <Route path="/login">
+      <Route exact path="/fundraise">
+        <Fundraise />
+      </Route>
+      <Route exact path="/donation">
+        <Donation />
+      </Route>
+      <Route exact path="/login">
         <Login />
       </Route>
-      <Route path="/signup">
-        <Signup />
+      <Route exact path="/signup">
+        <Login state="sign-up-mode" />
       </Route>
     </>
   )

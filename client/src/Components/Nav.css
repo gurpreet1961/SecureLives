@@ -1,0 +1,370 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka&family=Poppins:wght@300;400;500;600;700;800&display=swap");
+:root {
+  --color-primary: #7380ec;
+  --color-danger: #ff7782;
+  --color-success: #41f1b6;
+  --color-warning: #ffbb55;
+  --color-white: #fff;
+  --color-info-dark: #7d8da1;
+  --color-info-light: #dce1eb;
+  --color-dark: #363949;
+  --color-light: rgba(132, 139, 200, 0.18);
+  --color-primary-variant: #111e88;
+  --color-dark-variant: #677483;
+  --color-background: #f6f6f9;
+  --card-border-radius: 2rem;
+  --border-radius-1: 0.4rem;
+  --border-radius-2: 0.8rem;
+  --border-radius-3: 1.2rem;
+  --card-padding: 1.8rem;
+  --padding-1: 1.2rem;
+  --box-shadow: 0 2rem 3rem var(--color-light);
+}
+
+html {
+  font-size: 14px;
+}
+body {
+  width: 100vw;
+  height: 100vh;
+  font-family: poppins, sans-serif;
+  font-size: 0.88rem;
+  /* background: var(--color-background) !important; */
+  user-select: none;
+  overflow-x: hidden;
+  color: white;
+}
+
+.Navcontainer {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  appearance: none;
+  border: 0;
+  box-sizing: border-box;
+  display: grid;
+  width: 96%;
+  margin: 0 auto;
+  gap: 1.8rem;
+  grid-template-columns: 14rem 80% 4rem;
+}
+.NavLinkTag {
+  color: var(--color-info-dark);
+  text-decoration: none;
+}
+.NavLogo {
+  display: block;
+  width: 100%;
+}
+h1 {
+  font-weight: 800;
+  font-size: 1.8rem;
+}
+h2 {
+  font-size: 1.4rem;
+}
+h3 {
+  font-size: 0.87rem;
+}
+h4 {
+  font-size: 0.8rem;
+}
+h5 {
+  font-size: 0.77rem;
+}
+small {
+  font-size: 0.75rem;
+}
+.Navprofile-photo {
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.Navtext-muted {
+  color: var(--color-info-dark);
+}
+p {
+  color: var(--color-dark-variant);
+}
+b {
+  color: black;
+}
+.Navprimary {
+  color: var(--color-primary);
+}
+.Navdanger {
+  color: var(--color-danger);
+}
+.success {
+  color: var(--color-success);
+}
+.warning {
+  color: var(--color-warning);
+}
+
+aside {
+  height: 100vh;
+  /* width: 100rem; */
+}
+aside .fixed {
+  position: fixed;
+}
+aside .Navtop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.4rem;
+}
+aside .Navlogo {
+  display: flex;
+  gap: 0.8rem;
+}
+aside .Navlogo img {
+  width: 2rem;
+  height: 2rem;
+}
+
+aside .Navclose {
+  display: none;
+}
+
+/*///////////////SIDEBAR//////////////////*/
+aside .Navsidebar {
+  border-radius: 10px;
+  background: rgb(36, 39, 41);
+  display: flex;
+  flex-direction: column;
+  height: 86vh;
+  position: relative;
+  width: 13rem;
+  top: 3rem;
+}
+
+aside h3 {
+  font-weight: 500;
+}
+aside .Navsidebar .NavLinkTag {
+  display: flex;
+  color: var(--color-info-dark);
+  margin-left: 2rem;
+  gap: 1rem;
+  align-items: center;
+  position: relative;
+  height: 3.7rem;
+  transition: all 300ms ease;
+  order: inherit;
+}
+aside .Navsidebar .NavLinkTag span {
+  font-size: 1.6rem;
+  transition: all 300ms ease;
+}
+aside .Navsidebar .NavLinkTag:last-child {
+  position: absolute;
+  bottom: 2rem;
+  width: 100%;
+}
+
+aside .Navsidebar .NavLinkTag.Navactive {
+  background: var(--color-light);
+  color: var(--color-primary);
+  margin-left: 0;
+  border-radius: 10px;
+  width: 0;
+  position: relative;
+  animation: showActive 0.6s ease forwards;
+}
+
+@keyframes showActive {
+  to {
+    width: 100%;
+  }
+}
+aside .Navsidebar .NavLinkTag.Navactive::before {
+  content: "";
+  width: 6px;
+  height: 100%;
+  background: var(--color-primary);
+}
+
+aside .Navsidebar .NavLinkTag.Navactive span {
+  color: var(--color-primary);
+  margin-left: calc(1rem - 3px);
+}
+
+aside .Navsidebar .NavLinkTag:hover {
+  color: var(--color-primary);
+}
+aside .Navsidebar .NavLinkTag:hover span {
+  margin-left: 1rem;
+}
+
+/*/ //////////// RIGHT /////////////////*/
+
+.Navright {
+  margin-top: 1.4rem;
+}
+.Navright .Navtop {
+  display: flex;
+  justify-content: end;
+  gap: 2rem;
+  background: #363949 !important;
+}
+
+.Navright .Navtop button {
+  color: #fff !important;
+  display: none;
+}
+
+.Navright .Navtheme-toggler {
+  background: var(--color-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 1.6rem;
+  width: 4.2rem;
+  cursor: pointer;
+  border-radius: var(--border-radius-1);
+}
+
+.Navright .Navtheme-toggler span {
+  font-size: 1.2rem;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Navright .Navtheme-toggler span.Navactive {
+  background: var(--color-primary);
+  color: white;
+  border-radius: var(--border-radius-1);
+}
+
+.Navprofile {
+  display: flex;
+  gap: 2rem;
+  text-align: right;
+}
+
+/* ============ Media-Queries -- TAB =================*/
+@media screen and (max-width: 1200px) {
+  .Navcontainer {
+    width: 94%;
+    /* grid-template-columns: 7rem auto 23rem; */
+    grid-template-columns: 7rem auto 1rem;
+  }
+  .Navtext-muted {
+    display: none;
+  }
+  aside .NavLogo {
+    display: none;
+  }
+  aside .Navlogo h2 {
+    /* display: none; */
+  }
+  aside .Navsidebar h3 {
+    display: none;
+  }
+  aside .Navsidebar .NavLinkTag {
+    width: 5.6rem;
+  }
+  aside .Navsidebar .NavLinkTag:last-child {
+    position: relative;
+    margin-top: 1.8rem;
+  }
+}
+/* =============Media-Queries -- Mobile=============*/
+@media screen and (max-width: 768px) {
+  .Navcontainer {
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+  aside {
+    position: fixed;
+    left: -100%;
+    background: var(--color-white);
+    width: 18rem;
+    z-index: 3;
+    box-shadow: 1rem 3rem 4rem var(--color-light);
+    height: 100vh;
+    padding-right: var(--card-padding);
+    display: none;
+    animation: showMenu 400ms ease forwards;
+  }
+  @keyframes showMenu {
+    to {
+      left: 0;
+    }
+  }
+  aside .Navlogo {
+    margin-left: 1rem;
+  }
+  aside .Navlogo h2 {
+    display: inline;
+  }
+  aside .Navsidebar h3 {
+    display: inline;
+  }
+  aside .Navsidebar .NavLinkTag {
+    width: 100%;
+    height: 3.4rem;
+  }
+  aside .Navsidebar .NavLinkTag:last-child {
+    position: absolute;
+    bottom: 5rem;
+  }
+  aside .Navclose {
+    display: inline-block;
+    cursor: pointer;
+  }
+  .Navright {
+    width: 94%;
+    margin: 0auto 4rem;
+  }
+  .Navright .Navtop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    align-items: center;
+    padding: 0 0.8rem;
+    background: var(--color-white);
+    width: 100%;
+    margin: 0;
+    z-index: 2;
+    box-shadow: 0 1rem 1rem var(--color-light);
+  }
+  .Navright .Navtop .Navtheme-toggler {
+    width: 4.4rem;
+    position: absolute;
+    left: 66%;
+  }
+  .Navright .Navprofile .Navinfo {
+    /* display: none; */
+  }
+  .Navprofile-photo img {
+    width: 70%;
+    margin-top: 0.3rem;
+  }
+
+  .Navright .Navtop button {
+    display: inline-block;
+    background: transparent;
+    cursor: pointer;
+    color: var(--color-dark);
+    position: absolute;
+    left: 1rem;
+    border: none;
+  }
+  .Navright .Navtop button span {
+    font-size: 2rem;
+  }
+  .block {
+    display: block;
+    background: rgb(36, 39, 41);
+  }
+  .none {
+    display: none;
+  }
+}

@@ -2,85 +2,27 @@ import React, { useState } from "react";
 import "./Login.css";
 import loginsvg from "../Images/login.svg";
 import signupsvg from "../Images/register.svg";
-const container = document.querySelector(".container");
-const Login = () => {
+import LoginForm from "./LoginForm";
+import SignupForm from "./SignupForm";
+const Login = (pros) => {
+  let state = pros.state;
+  if (pros.state === undefined) {
+    state = "sign-in-mode";
+  }
+  const [loginOrSignup, setloginOrSignup] = useState(state);
   let loginClick = () => {
-    container.classList.remove("sign-up-mode");
+    setloginOrSignup("sign-in-mode");
   };
   let signUpClick = () => {
-    container.classList.add("sign-up-mode");
+    setloginOrSignup("sign-up-mode");
   };
   return (
     <>
-      <div className="container">
+      <div className={`container ${loginOrSignup}`} id="container">
         <div className="forms-container">
           <div className="signin-signup">
-            <form action="#" className="sign-in-form">
-              <h2 className="title">Sign in</h2>
-              <div className="input-field">
-                <i className="fas fa-user"></i>
-                <input type="text" placeholder="Username" />
-              </div>
-              <div className="input-field">
-                <i className="fas fa-lock"></i>
-                <input type="password" placeholder="Password" />
-              </div>
-              <input type="submit" value="Login" className="btn solid" />
-              <p className="social-text">Or Sign in with social platforms</p>
-              <div className="social-media">
-                <a href="#" className="social-icon">
-                  <i className="fab fa-facebook-f"></i>
-                </a>
-                <a href="#" className="social-icon">
-                  <i className="fab fa-twitter"></i>
-                </a>
-                <a href="#" className="social-icon">
-                  <i className="fab fa-google"></i>
-                </a>
-                <a href="#" className="social-icon">
-                  <i className="fab fa-linkedin-in"></i>
-                </a>
-              </div>
-            </form>
-            <form action="#" className="sign-up-form">
-              <h2 className="title">Sign up</h2>
-              <div className="input-field">
-                <i className="fas fa-user"></i>
-                <input type="text" placeholder="Username" />
-              </div>
-              <div className="input-field">
-                <i className="fas fa-envelope"></i>
-                <input type="email" placeholder="Email" />
-              </div>
-              <div className="input-field">
-                <i className="fas fa-envelope"></i>
-                <input type="text" placeholder="Profession" />
-              </div>
-              <div className="input-field">
-                <i className="fas fa-lock"></i>
-                <input type="password" placeholder="Password" />
-              </div>
-              <div className="input-field">
-                <i className="fas fa-lock"></i>
-                <input type="password" placeholder="Confirm Password" />
-              </div>
-              <input type="submit" className="btn" value="Sign up" />
-              <p className="social-text">Or Sign up with social platforms</p>
-              <div className="social-media">
-                <a href="#" className="social-icon">
-                  <i className="fab fa-facebook-f"></i>
-                </a>
-                <a href="#" className="social-icon">
-                  <i className="fab fa-twitter"></i>
-                </a>
-                <a href="#" className="social-icon">
-                  <i className="fab fa-google"></i>
-                </a>
-                <a href="#" className="social-icon">
-                  <i className="fab fa-linkedin-in"></i>
-                </a>
-              </div>
-            </form>
+            <LoginForm />
+            <SignupForm />
           </div>
         </div>
 
@@ -88,10 +30,7 @@ const Login = () => {
           <div className="panel left-panel">
             <div className="content">
               <h3>New here ?</h3>
-              <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Debitis, ex ratione. Aliquid!
-              </p>
+              <p>Click Sign up Button to Register Your self!</p>
               <button
                 className="btn transparent"
                 onClick={signUpClick}
@@ -104,11 +43,8 @@ const Login = () => {
           </div>
           <div className="panel right-panel">
             <div className="content">
-              <h3>One of us ?</h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
-                laboriosam ad deleniti.
-              </p>
+              <h3>Already Have Account?</h3>
+              <p>Click Sign In button to Login</p>
               <button
                 className="btn transparent"
                 id="sign-in-btn"

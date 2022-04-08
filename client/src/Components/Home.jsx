@@ -36,7 +36,7 @@ const Home = () => {
           </div>
           <div className="homeTables ">
             <div className="completionTable TableStyle">
-              <h1>Last 10 Donation completion</h1>
+              <h1>Last 10 Target Complete</h1>
               <table>
                 <thead>
                   <th>Person Name</th>

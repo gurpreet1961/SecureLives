@@ -4,6 +4,7 @@ import loginsvg from "../Images/login.svg";
 import signupsvg from "../Images/register.svg";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
+import { NavLink } from "react-router-dom";
 const Login = (pros) => {
   let state = pros.state;
   if (pros.state === undefined) {
@@ -31,13 +32,15 @@ const Login = (pros) => {
             <div className="content">
               <h3>New here ?</h3>
               <p>Click Sign up Button to Register Your self!</p>
-              <button
-                className="btn transparent"
-                onClick={signUpClick}
-                id="sign-up-btn"
-              >
-                Sign up
-              </button>
+              <NavLink to="/signup">
+                <button
+                  className="btn transparent"
+                  onClick={signUpClick}
+                  id="sign-up-btn"
+                >
+                  Sign up
+                </button>
+              </NavLink>
             </div>
             <img src={loginsvg} className="image" alt="" />
           </div>
@@ -45,13 +48,15 @@ const Login = (pros) => {
             <div className="content">
               <h3>Already Have Account?</h3>
               <p>Click Sign In button to Login</p>
-              <button
-                className="btn transparent"
-                id="sign-in-btn"
-                onClick={loginClick}
-              >
-                Sign in
-              </button>
+              <NavLink to="/login">
+                <button
+                  className="btn transparent"
+                  id="sign-in-btn"
+                  onClick={loginClick}
+                >
+                  Sign in
+                </button>
+              </NavLink>
             </div>
             <img src={signupsvg} className="image" alt="" />
           </div>

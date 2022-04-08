@@ -9,11 +9,7 @@ function DonationCard() {
         </div>
         <div className="middle">
           <div className="Middlelef">
-            <h1>Jhon</h1>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil,
-              saepe!
-            </p>
+            <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
             <h1>₹25,000</h1>
             <p className="RemaingAmount">Remaing: ₹2000</p>
           </div>

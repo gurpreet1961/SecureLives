@@ -116,8 +116,12 @@ main .insights .donationCompletion .percentage {
   border: none;
   outline: none;
   padding: 1rem 2rem;
+  width: 100%;
   border-radius: var(--card-border-radius);
   transition: all 500ms ease;
+  color: rgb(0, 0, 0);
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 .activeDonation button:hover {
   background-color: #40446b;
@@ -129,7 +133,7 @@ main .homeTables {
   display: grid;
   grid-template-columns: 68% auto;
   font-size: medium;
-  font-weight: bold;
+  font-weight: 200;
   /* grid-gap: 1rem; */
 }
 main .TableStyle {

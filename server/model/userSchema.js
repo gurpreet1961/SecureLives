@@ -28,6 +28,30 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    date: {
+        type: Date,
+        default: Date.now
+    },
+    messages: [
+        {
+            name: {
+                type: String,
+                required: true
+            },
+            email: {
+                type: String,
+                required: true
+            },
+            phone: {
+                type: Number,
+                required: true
+            },
+            message: {
+                type: String,
+                require: true
+            }
+        }
+    ],
     tokens: [
         {
             token: {
@@ -35,7 +59,8 @@ const userSchema = new mongoose.Schema({
                 require: true
             }
         }
-    ]
+    ],
+
 })
 //hash password using bcryptjs before save method
 userSchema.pre('save', async function (next) {
@@ -51,9 +76,20 @@ userSchema.methods.generateAuthToken = async function () {
     try {
         //process.env.SECRET__KEY = we have stored secret key in config.env here we are accessing that
         let token = jwt.sign({ _id: this._id }, process.env.SECRET__KEY);
-        this.tokens = this.tokens.concat({ token: token });
+        this.tokens = { token: token };
         await this.save();
         return token;
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+//Save the message in DB
+userSchema.methods.addMessage = async function (name, email, phone, message) {
+    try {
+        this.messages = this.messages.concat({ name, email, phone, message });
+        await this.save();
+        return this.messages;
     } catch (err) {
         console.log(err);
     }

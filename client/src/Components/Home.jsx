@@ -39,10 +39,12 @@ const Home = () => {
               <h1>Last 10 Target Complete</h1>
               <table>
                 <thead>
-                  <th>Person Name</th>
-                  <th>Number of Days</th>
-                  <th>Total Amount</th>
-                  <th>Status</th>
+                  <tr>
+                    <th>Person Name</th>
+                    <th>Number of Days</th>
+                    <th>Total Amount</th>
+                    <th>Status</th>
+                  </tr>
                 </thead>
                 <tbody>
                   <tr>
@@ -112,9 +114,11 @@ const Home = () => {
               <h1>Top 10 Donors</h1>
               <table>
                 <thead>
-                  <th>Person Name</th>
-                  <th>Number of Donations</th>
-                  <th>Total Amount</th>
+                  <tr>
+                    <th>Person Name</th>
+                    <th>Number of Donations</th>
+                    <th>Total Amount</th>
+                  </tr>
                 </thead>
                 <tbody>
                   <tr>

@@ -1,8 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import "../App.css";
 import profilePic from "../Images/pic.jpeg";
+import { useHistory } from "react-router-dom";
 const Profile = () => {
+  const history = useHistory();
+  const [userData, setUserData] = useState(0);
+  const callProfilePage = async () => {
+    try {
+      const res = await fetch("/profile", {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          credentials: "include",
+        },
+      });
+      const data = await res.json();
+      console.log(data);
+      setUserData(data);
+      if (res.status !== 200) {
+        const error = new Error(res.error);
+        throw error;
+      }
+    } catch (err) {
+      console.log(err);
+      history.push("/login");
+    }
+  };
+
+  useEffect(() => {
+    callProfilePage();
+  }, []);
+
   return (
     <>
       <div className="Navcontainer">
@@ -10,43 +40,33 @@ const Profile = () => {
         <main>
           <div className="profile_outer_box">
             <div className="profile_box">
-              <div className="profile_left_side">
-                <div className="profile_left_upper">
+              <form method="GET" className="profile_right_side">
+                <div className="profile_right_upper">
                   <img src={profilePic} alt="" />
-                  <h2>Gurpreet Singh</h2>
-                </div>
-                <div className="profile_left_lower">
-                  <button className="profile_btn">Basic</button>
-                  <button className="profile_btn">My Fundraise</button>
-                  <button className="profile_btn"> New Donation</button>
-                  <button className="profile_btn">New Fundraise</button>
-                </div>
-              </div>
-              <div className="profile_right_side">
-                <div className="profile_edit_icon">
-                  <span class="material-icons-sharp">edit</span>
+                  <h2>
+                    {userData.name}{" "}
+                    <span className="material-icons-sharp profile_edit_icon">
+                      edit
+                    </span>
+                  </h2>
                 </div>
                 <div className="profile_name profile_right_data">
                   <h2>Name: </h2>
-                  <p>Gurpreet Singh</p>
+                  <p>{userData.name}</p>
                 </div>
                 <div className="profile_email profile_right_data">
                   <h2>Email: </h2>
-                  <p>19bcs1961@cuchd.in</p>
+                  <p>{userData.email}</p>
                 </div>
                 <div className="profile_phone profile_right_data">
                   <h2>Phone: </h2>
-                  <p>8219325594</p>
+                  <p>{userData.phone}</p>
                 </div>
                 <div className="profile_profession profile_right_data">
                   <h2>Profession: </h2>
-                  <p>Student</p>
+                  <p>{userData.work}</p>
                 </div>
-                <div className="profile_profession profile_right_data">
-                  <h2>Donations: </h2>
-                  <p>04</p>
-                </div>
-              </div>
+              </form>
             </div>
           </div>
         </main>

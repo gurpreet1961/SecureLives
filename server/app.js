@@ -2,7 +2,6 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const express = require('express');
 const app = express();
-
 dotenv.config({ path: './config.env' });
 require('./db/conn');
 
@@ -11,26 +10,18 @@ app.use(express.json());
 
 //we link the router file to make our route easy
 app.use(require('./router/auth'));
-
+app.use('/public', express.static('public'));
 //DB and PORT is in config.env to make then secure(so that no one knows)
 const PORT = process.env.PORT;
 
 
-// Middleware
-const middleware = (req, res, next) => {
-    console.log('hello my middleware');
-    next();
-}
 
-// app.get('/', (req, res) => {
-//     res.send('hello from server app js');
+// app.get('/profile', (req, res) => {
+//     res.send('prifile');
 // });
-app.get('/about', middleware, (req, res) => {
-    res.send('ABOUT');
-});
-app.get('/contact', (req, res) => {
-    res.send('CONTACT');
-});
+// app.get('/contact', (req, res) => {
+//     res.send('CONTACT');
+// });
 app.get('/signin', (req, res) => {
     res.send('SIGNIN');
 });

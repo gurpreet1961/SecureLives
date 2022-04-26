@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import { NavLink } from "react-router-dom";
 import Logo from "../Images/logo.png";
 import ProfilePic from "../Images/pic.jpeg";
+import { useHistory } from "react-router-dom";
+
 import "./Nav.css";
 const Navbar = () => {
   const [menuDisplay, setMenuDisplay] = useState("none");
@@ -18,6 +20,35 @@ const Navbar = () => {
     console.log(pathname);
     return pathname === "/";
   };
+  const history = useHistory();
+  const [userData, setUserData] = useState(0);
+  const callProfilePage = async () => {
+    try {
+      const res = await fetch("/profile", {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          credentials: "include",
+        },
+      });
+      const data = await res.json();
+      console.log(data);
+      setUserData(data);
+      if (res.status !== 200) {
+        const error = new Error(res.error);
+        throw error;
+      }
+    } catch (err) {
+      console.log(err);
+      history.push("/login");
+    }
+  };
+
+  useEffect(() => {
+    callProfilePage();
+  }, []);
+
   return (
     <>
       {/* <div className="Navcontainer"> */}
@@ -72,7 +103,7 @@ const Navbar = () => {
             <NavLink
               activeClassName="Navactive"
               className="NavLinkTag"
-              to="/contact"
+              to="/ContactUs"
             >
               <span className="material-icons-sharp">contact_page</span>
               <h3>Contact Us</h3>
@@ -96,18 +127,20 @@ const Navbar = () => {
           <div className="Navprofile">
             <div className="Navinfo">
               <p style={{ marginBottom: "0", color: "white" }}>
-                Hey, <b> Gurpreet</b>
+                Hey, <b> {userData.name}</b>
               </p>
               {/* <small style={{ color: "white" }} className="Navtext-muted">
                 User
               </small> */}
             </div>
             <div className="Navprofile-photo">
-              <img
-                src={ProfilePic}
-                width="100%"
-                style={{ borderRadius: "20px" }}
-              />
+              <NavLink to="/profile">
+                <img
+                  src={ProfilePic}
+                  width="100%"
+                  style={{ borderRadius: "20px" }}
+                />
+              </NavLink>
             </div>
           </div>
         </div>

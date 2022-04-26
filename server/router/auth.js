@@ -1,55 +1,37 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
+const multer = require("multer");
+const userCtrl = require("../controllers/userController")
 const jwt = require('jsonwebtoken');
 const router = express.Router();
-
+const cookieParser = require('cookie-parser');
+router.use(cookieParser());
+const authenticate = require("../middleware/authenticate")
 require('../db/conn');
 const User = require('../model/userSchema');
+var bodyParser = require('body-parser');
+router.use(bodyParser.urlencoded({ extended: false }));
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "public/uploads");
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + '_' + file.originalname);
+    }
+})
+
+const upload = multer({ storage: storage });
+const Donation = require('../model/donationSchema');
 router.get('/', (req, res) => {
     res.send('Hello from server router js');
 });
 
-/////Using Promises
-// router.post('/register', (req, res) => {
 
-//     // console.log(req.body.name);
-//     // console.log(req.body.email);
-//     const { name, email, phone, work, password, cpassword } = req.body;
-//     // console.log(name);
-//     // console.log(email);
-//     // res.json({ message: req.body });
-
-//     if (!name || !email || !phone || !work || !password || !cpassword) {
-//         return res.status(422).json({ error: "enter all info" })
-//     }
-
-//     //check user already exist
-//     User.findOne({ email: email })
-//         .then((userExist) => {
-//             if (userExist) {
-//                 return res.status(422).json({ error: "Email already exist" });
-//             }
-//             //if user not exsist
-
-//             //creating new object of User and pass all value of req.body(which we already destructured)
-//             const user = new User({ name, email, phone, work, password, cpassword });
-
-//             //saving the data in database it give a promise
-//             user.save().then(() => {
-//                 res.status(202).json({ message: "user registered successfuly" });
-//             }).catch((err) => res.status(500).json({ error: "Failed to register" }));
-//         }).catch(err => { console.log(err); });
-// });
 
 //Using Async Await
 router.post('/register', async (req, res) => {
 
-    // console.log(req.body.name);
-    // console.log(req.body.email);
     const { name, email, phone, work, password, cpassword } = req.body;
-    // console.log(name);
-    // console.log(email);
-    // res.json({ message: req.body });
 
     if (!name || !email || !phone || !work || !password || !cpassword) {
         return res.status(422).json({ error: "enter all info" })
@@ -82,9 +64,7 @@ router.post('/register', async (req, res) => {
 router.post('/signin', async (req, res) => {
     try {
         let token;
-        // console.log(req.body);
         const { email, password } = req.body;
-        // res.json({ message: req.body });
         if (!email || !password) {
             return res.status(400).json({ error: "enter all info" })
         }
@@ -117,4 +97,33 @@ router.post('/signin', async (req, res) => {
     }
 
 });
+
+//About us Page
+router.get('/profile', authenticate, (req, res) => {
+
+    res.send(req.rootUser);
+});
+
+router.post('/contact', authenticate, async (req, res) => {
+    try {
+        const { name, email, phone, message } = req.body;
+        if (!name || !email || !phone || !message) {
+            console.log("error in contact form");
+            return res.json({ error: "please fill the contact form properly" })
+        }
+        const userContact = await User.findOne({ _id: req.userID });
+        if (userContact) {
+
+            const userMessage = await userContact.addMessage(name, email, phone, message);
+            await userContact.save();
+            res.status(201).json({ message: "user contact successfully" });
+        }
+    } catch (error) {
+        console.log(error);
+    }
+
+});
+
+router.post('/add', upload.single('myFile'), userCtrl.userAdd)
+
 module.exports = router;

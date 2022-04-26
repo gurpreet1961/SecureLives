@@ -1,8 +1,84 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
+import { useHistory } from "react-router-dom";
 
-// import "bootstrap/dist/css/bootstrap.min.css";
 const Contact = () => {
+  const history = useHistory();
+  const [userData, setUserData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+  const callProfilePage = async () => {
+    try {
+      const res = await fetch("/profile", {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          credentials: "include",
+        },
+      });
+      const data = await res.json();
+      console.log(data);
+      setUserData({
+        ...userData,
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+      });
+      if (res.status !== 200) {
+        const error = new Error(res.error);
+        throw error;
+      }
+    } catch (err) {
+      console.log(err);
+      history.push("/login");
+    }
+  };
+
+  useEffect(() => {
+    callProfilePage();
+  }, []);
+
+  //Storing message
+
+  const handleInputs = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setUserData({
+      ...userData,
+      [name]: value,
+    });
+  };
+  //send data to backend
+  const contactForm = async (e) => {
+    e.preventDefault();
+    const { name, email, phone, message } = userData;
+    console.log("hi");
+    const res = await fetch("/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        phone,
+        message,
+      }),
+    });
+    console.log(res);
+    const data = await res.json();
+    console.log("hi");
+    if (!data) {
+      console.log("message not sent");
+    } else {
+      alert("Message Sent");
+      setUserData({ ...userData, message: "" });
+    }
+  };
   return (
     <>
       <div className="Navcontainer">
@@ -13,7 +89,7 @@ const Contact = () => {
               <div className="row">
                 <div className="col-lg-10 offset-1 ">
                   <div className="contact_info_item">
-                    <span class="material-icons-sharp">call</span>
+                    <span className="material-icons-sharp">call</span>
                     <div className="contatct_info_content">
                       <div className="contact_info_title">Phone</div>
                       <div className="contact_info_text">+91 1111-222-2198</div>
@@ -21,14 +97,16 @@ const Contact = () => {
                   </div>
 
                   <div className="contact_info_item">
-                    <span class="material-icons-sharp">alternate_email</span>
+                    <span className="material-icons-sharp">
+                      alternate_email
+                    </span>
                     <div className="contatct_info_content">
                       <div className="contact_info_title">Email</div>
                       <div className="contact_info_text">abc012@gmaail.com</div>
                     </div>
                   </div>
                   <div className="contact_info_item">
-                    <span class="material-icons-sharp">home</span>
+                    <span className="material-icons-sharp">home</span>
                     <div className="contatct_info_content">
                       <div className="contact_info_title">Address</div>
                       <div className="contact_info_text">Himachal, India</div>
@@ -42,7 +120,7 @@ const Contact = () => {
           {/**Contact US form */}
           <div className="contact_form">
             <div className="form_container">
-              <form id="contact_form">
+              <form method="POST" id="contact_form">
                 <div className="contact_form_title">
                   <h2>Get in Touch</h2>
                 </div>
@@ -50,41 +128,53 @@ const Contact = () => {
                 <div className="contact_form_data">
                   <input
                     type="text"
-                    name=""
+                    name="name"
                     id="contact_form_name"
                     className="contact_form_name input_field"
                     placeholder="Name"
-                    required="true"
+                    onChange={handleInputs}
+                    value={userData.name}
+                    required
                   />
                   <input
                     type="email"
-                    name=""
+                    name="email"
                     id="contact_form_email"
                     className="contact_form_email input_field"
+                    onChange={handleInputs}
+                    value={userData.email}
                     placeholder="Email"
-                    required="true"
+                    required
                   />
                   <input
                     type="number"
-                    name=""
+                    name="phone"
                     id="contact_form_number"
                     className="contact_form_number input_field"
                     placeholder="Phone Number"
-                    required="true"
+                    onChange={handleInputs}
+                    value={userData.phone}
+                    required
                   />
                 </div>
                 <div className="message">
                   <textarea
-                    name="Message"
+                    name="message"
                     id="contact_form_message"
                     className="contact_form_message"
                     cols="70"
                     rows="10"
+                    onChange={handleInputs}
+                    value={userData.message}
                     placeholder="Enter Your Message"
                   ></textarea>
                 </div>
                 <div className="contact_form_button">
-                  <button className="contact_submit_button" type="submit">
+                  <button
+                    className="contact_submit_button"
+                    onClick={contactForm}
+                    type="submit"
+                  >
                     Send Message
                   </button>
                 </div>

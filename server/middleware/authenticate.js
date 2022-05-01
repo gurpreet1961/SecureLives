@@ -4,7 +4,7 @@ const User = require('../model/userSchema');
 // import Cookies from 'js-cookie';
 const Authenticate = async (req, res, next) => {
     try {
-        console.log(req.cookies);
+        // console.log(req.cookies);
         const token = req.cookies.jwtoken;
         const verifyToken = jwt.verify(token, process.env.SECRET__KEY);
 

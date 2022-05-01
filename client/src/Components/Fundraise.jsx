@@ -14,7 +14,6 @@ const Fundraise = () => {
     uipID: "",
   });
   const imageUpload = (e) => {
-    console.log(e.target.files);
     setInputField({ ...inputField, image: e.target.files[0] });
   };
   const handleInputs = (e) => {
@@ -48,7 +47,6 @@ const Fundraise = () => {
         await axios
           .post("/add", formdata)
           .then(function (res) {
-            // console.log(res);
             if (res.status === 200) {
               setInputField({
                 title: "",
@@ -64,15 +62,12 @@ const Fundraise = () => {
             }
           })
           .catch(function (err) {
-            // console.log(err);
             window.alert(err);
           });
       } catch (e) {
-        // console.log(e);
         window.alert(e);
       }
     } else {
-      // console.log("Inavlid");
       window.alert("Invalid");
     }
   };
@@ -124,8 +119,8 @@ const Fundraise = () => {
                   </label>
                   <span
                     style={{
-                      top: "3.21rem",
-                      right: "2.8rem",
+                      top: "3.31rem",
+                      right: "2.85rem",
                     }}
                     className="material-icons-sharp fundInputIcon"
                   >
@@ -144,12 +139,12 @@ const Fundraise = () => {
                 </div>
                 <div className="col-md-6">
                   <label htmlFor="inputFundAmount" className="form-label">
-                    How much do you want to raise?
+                    Amount Raise
                   </label>
                   <span
                     style={{
-                      top: "3.21rem",
-                      right: "17.6rem",
+                      top: "3.31rem",
+                      right: "7rem",
                     }}
                     className="material-icons-sharp fundInputIcon"
                   >
@@ -166,9 +161,9 @@ const Fundraise = () => {
                     required
                   ></input>
                 </div>
-                <div className="col-6">
+                <div className="col-6 col-6-edit">
                   <label htmlFor="inputFundCauses" className="form-label">
-                    Fundraise For...
+                    category
                   </label>
                   <select
                     name="category"
@@ -184,7 +179,7 @@ const Fundraise = () => {
                     <option>Other Cause</option>
                   </select>
                 </div>
-                <div className="col-6">
+                <div className="col-6 col-6-edit">
                   <label htmlFor="donationImg" className="form-label">
                     Image
                   </label>
@@ -225,7 +220,7 @@ Follow these steps:
                     Account Holder Name
                   </label>
                   <span
-                    style={{ top: "3.2rem", right: "11.1rem" }}
+                    style={{ top: "3.3rem", right: "11.1rem" }}
                     className="material-icons-sharp fundInputIcon"
                   >
                     person
@@ -247,7 +242,7 @@ Follow these steps:
                     Account number
                   </label>
                   <span
-                    style={{ top: "3.2rem", right: "8.2rem" }}
+                    style={{ top: "3.3rem", right: "8.19rem" }}
                     className="material-icons-sharp fundInputIcon"
                   >
                     pin
@@ -268,7 +263,7 @@ Follow these steps:
                     IFSC Code
                   </label>
                   <span
-                    style={{ top: "3.2rem", right: "5.2rem" }}
+                    style={{ top: "3.25rem", right: "5.2rem" }}
                     className="material-icons-sharp fundInputIcon"
                   >
                     account_balance
@@ -289,7 +284,7 @@ Follow these steps:
                     UPI ID (Optional)
                   </label>
                   <span
-                    style={{ top: "3.2rem", right: "9.99rem" }}
+                    style={{ top: "3.25rem", right: "9.9rem" }}
                     className="material-icons-sharp fundInputIcon"
                   >
                     account_balance_wallet

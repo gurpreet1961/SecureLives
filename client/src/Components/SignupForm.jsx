@@ -12,8 +12,6 @@ function SignupForm() {
   });
   let name, value;
   const handleInputs = (e) => {
-    // console.log(e);
-
     name = e.target.name;
     value = e.target.value;
 
@@ -39,10 +37,8 @@ function SignupForm() {
     const data = await res.json();
     if (res.status !== 202 || !data) {
       window.alert("Invalid Registration");
-      console.log("Invalid data");
     } else {
       window.alert("Successfull Registration");
-      console.log("Successfull data");
       setUser({
         name: "",
         email: "",
@@ -69,6 +65,7 @@ function SignupForm() {
             required
           />
         </div>
+
         <div className="input-field">
           <i className="fas fa-envelope"></i>
           <input

@@ -4,6 +4,7 @@ import Home from './Components/Home'
 import Profile from './Components/Profile'
 import Contact from './Components/Contact'
 import Login from './Components/Login'
+import Logout from './Components/Logout'
 import "./App.css";
 import Fundraise from './Components/Fundraise'
 import Donation from './Components/Donation'
@@ -34,6 +35,9 @@ const App = () => {
         </Route>
         <Route path="/login">
           <Login />
+        </Route>
+        <Route path="/logout">
+          <Logout />
         </Route>
         <Route path="/signup">
           <Login state="sign-up-mode" />

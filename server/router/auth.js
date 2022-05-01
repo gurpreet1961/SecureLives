@@ -4,11 +4,14 @@ const multer = require("multer");
 const userCtrl = require("../controllers/userController")
 const jwt = require('jsonwebtoken');
 const router = express.Router();
+const Razorpay = require("razorpay");
+const crypto = require("crypto");
 const cookieParser = require('cookie-parser');
 router.use(cookieParser());
 const authenticate = require("../middleware/authenticate")
 require('../db/conn');
 const User = require('../model/userSchema');
+const Donation = require('../model/donationSchema');
 var bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended: false }));
 const storage = multer.diskStorage({
@@ -21,7 +24,6 @@ const storage = multer.diskStorage({
 })
 
 const upload = multer({ storage: storage });
-const Donation = require('../model/donationSchema');
 router.get('/', (req, res) => {
     res.send('Hello from server router js');
 });
@@ -72,7 +74,6 @@ router.post('/signin', async (req, res) => {
         if (userData) {
             const isMatch = await bcrypt.compare(password, userData.password);
             token = await userData.generateAuthToken();
-            console.log(token);
             res.cookie("jwtoken", token, {
                 //expires after 30 days
                 //Date.now() + milisec
@@ -97,7 +98,18 @@ router.post('/signin', async (req, res) => {
     }
 
 });
+router.get('/getData', async (req, res) => {
+    try {
+        const donationData = await Donation.find();
+        if (donationData) {
+            res.json({ donationData });
+        }
+    } catch (err) {
 
+        console.log(err);
+
+    }
+})
 //About us Page
 router.get('/profile', authenticate, (req, res) => {
 
@@ -126,4 +138,58 @@ router.post('/contact', authenticate, async (req, res) => {
 
 router.post('/add', upload.single('myFile'), userCtrl.userAdd)
 
+/**************PAYMENT GATEWAY BACKEND***************/
+router.post("/orders", async (req, res) => {
+    try {
+        const instance = new Razorpay({
+            key_id: process.env.KEY_ID,
+            key_secret: process.env.KEY_SECRET,
+        });
+        const options = {
+            amount: req.body.amount * 100,
+            currency: "INR",
+            receipt: crypto.randomBytes(10).toString("hex"),
+        };
+
+        instance.orders.create(options, (err, order) => {
+            if (err) {
+                console.log(err);
+                return res.status(500).json({ message: "Something Went Wrong!" });
+            }
+            res.status(200).json({ data: order });
+        });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ message: "Internal Server Error!" });
+    }
+});
+
+router.post("/verify", async (req, res) => {
+    try {
+        const {
+            razorpay_order_id,
+            razorpay_payment_id,
+            razorpay_signature,
+        } = req.body;
+        const sign = razorpay_order_id + "|" + razorpay_payment_id;
+        const expectedSign = crypto.createHmac("sha256", process.env.kEY_SECRET).update(sign.toString()).digest("hex");
+
+        if (razorpay_signature === expectedSign) {
+            return res.status(200).json({ message: "Payment cerified successfully" });
+        } else {
+            return res.status(400).json({ message: "Invalid signature sent!" });
+        }
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ message: "Internal Server Error!" });
+    }
+})
+
+
+router.get('/logout', authenticate, (req, res) => {
+    console.log("logout done")
+    res.clearCookie('jwtoken', { path: "/" })
+    res.status(200).send("user logout");
+});
 module.exports = router;

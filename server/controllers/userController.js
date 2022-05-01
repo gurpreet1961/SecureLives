@@ -1,8 +1,6 @@
 const Donations = require
     ("../model/donationSchema");
 const userAdd = async (req, res) => {
-    // console.log(req.body);
-    console.log(req.file);
     let image = (req.file) ? (req.file.mimetype == 'image/jpeg' || req.file.mimetype == 'image/jpg' || req.file.mimetype == 'image/png') ? req.file.filename : null : null;
     let { title,
         totalAmount,

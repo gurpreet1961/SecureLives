@@ -28,6 +28,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    donatedAmount: {
+        type: Number,
+        default: 0
+    },
     date: {
         type: Date,
         default: Date.now

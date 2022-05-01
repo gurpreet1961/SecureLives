@@ -55,6 +55,9 @@ main .insights {
   margin-left: 1rem;
 }
 main .insights > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background-color: #131418;
   padding: var(--card-padding);
   border-radius: var(--card-border-radius);
@@ -63,7 +66,9 @@ main .insights > div {
   transition: all 300ms ease;
 }
 .DonationImg img {
-  width: 25rem;
+  /* align-self: center; */
+  /* margin-left: 3%; */
+  width: 26rem;
   border-radius: var(--card-border-radius);
 }
 main .insights > div:hover {
@@ -84,6 +89,7 @@ main .insights h3 {
 }
 main .insights .donationCompletion {
   position: relative;
+  margin-left: 1rem;
   width: 92px;
   height: 92px;
   border-radius: 50%;
@@ -104,11 +110,15 @@ main .insights svg circle {
 }
 main .insights .donationCompletion .percentage {
   position: absolute;
-  top: 2.5rem;
+  top: 2rem;
   left: 2.5rem;
   height: 100%;
   display: flex;
   justify-content: center;
+}
+main .insights .donationCompletion .percentage > p {
+  color: aliceblue;
+  font-size: large;
 }
 .activeDonation button {
   margin-top: 1rem;
@@ -131,10 +141,9 @@ main .insights .donationCompletion .percentage {
 }
 main .homeTables {
   display: grid;
-  grid-template-columns: 68% auto;
-  font-size: medium;
-  font-weight: 200;
-  /* grid-gap: 1rem; */
+  grid-template-columns: 65% auto;
+  font-size: larger;
+  grid-gap: 1rem;
 }
 main .TableStyle {
   width: 98%;
@@ -189,4 +198,25 @@ main .TableStyle table tbody .TablePayment {
 main .TableStyle h1 {
   text-align: center;
   margin-bottom: 1rem;
+}
+.disc {
+  font-size: small;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+}
+.payamount {
+  padding: 1rem;
+  border-radius: 20px;
+  background: #d0d4db;
+  /* color: white; */
+  font-size: larger;
+  font-weight: bold;
+  outline: none;
+  border: none;
+  width: 50%;
+  justify-self: center;
+  align-self: center;
 }

@@ -252,19 +252,39 @@ aside .Navsidebar .NavLinkTag:hover span {
 
 /* ============ Media-Queries -- TAB =================*/
 @media screen and (max-width: 1200px) {
+  main {
+    width: 80vw !important;
+    font-size: 1rem !important;
+    margin-left: 5rem;
+  }
+  main .insights > div {
+    align-items: center !important;
+  }
+  .Navprofile {
+    margin-right: 5rem;
+    font-size: x-small;
+  }
+  .DonationImg {
+    width: 15rem !important;
+    height: 10rem !important;
+  }
+  .DonationImg > img {
+    width: 15rem !important;
+    height: 10rem !important;
+  }
   .Navcontainer {
     width: 94%;
     /* grid-template-columns: 7rem auto 23rem; */
     grid-template-columns: 7rem auto 1rem;
+  }
+  .fundInputIcon {
+    display: none !important;
   }
   .Navtext-muted {
     display: none;
   }
   aside .NavLogo {
     display: none;
-  }
-  aside .Navlogo h2 {
-    /* display: none; */
   }
   aside .Navsidebar h3 {
     display: none;
@@ -279,10 +299,135 @@ aside .Navsidebar .NavLinkTag:hover span {
 }
 /* =============Media-Queries -- Mobile=============*/
 @media screen and (max-width: 768px) {
+  .Navprofile {
+    margin-right: 0rem;
+    font-size: x-small;
+  }
+  body {
+    width: 100vw;
+    /* font-size: 0.6rem !important; */
+  }
+  main {
+    width: 100vw !important;
+    font-size: 1rem !important;
+    margin-left: 0rem !important;
+  }
+
+  .activeDonation {
+    height: 36rem !important;
+  }
+  .DonationImg > img {
+    width: 15rem !important;
+    height: 10rem !important;
+  }
+  .middle {
+    font-size: small !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .donationCompletion {
+    display: none;
+  }
+  .donationHead > h1 {
+    font-size: small !important;
+  }
+  .donationHead > a {
+    font-size: small !important;
+  }
+  main {
+    padding: 1rem;
+  }
+  .homeTables {
+    width: 93vw;
+    font-size: small !important;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+  }
   .Navcontainer {
     width: 100%;
     grid-template-columns: 1fr;
   }
+  .contact_form_data {
+    flex-wrap: wrap;
+  }
+  .contact_form {
+    height: 40rem !important;
+    width: 92vw !important;
+    margin: 4rem 0 !important;
+    padding: 0.4rem !important;
+  }
+  .form_container {
+    height: 100% !important;
+    width: 100% !important;
+  }
+  .form_container > form {
+    height: 100% !important;
+  }
+  .contact_form_title {
+    align-self: center !important;
+  }
+  .contact_form_data {
+    height: 31%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .message > textarea {
+    width: 100%;
+  }
+  .contact_info {
+    width: 92vw !important;
+  }
+  .contact_info_item {
+    width: 100% !important;
+  }
+  .contact_info > .container-fluid > .row {
+    height: 30rem !important;
+  }
+  .profileMain {
+    width: 100vw;
+    height: 100vh;
+  }
+  .Profile_heading {
+    box-shadow: none !important;
+    color: #fff !important;
+  }
+  .profilehead {
+    width: 100% !important;
+    font-size: small !important;
+    padding: 1rem 1rem !important;
+  }
+  .profilehead > div > h2 {
+    font-size: small !important;
+  }
+
+  .col-md-6 input {
+    padding-left: 1rem !important;
+  }
+  .col-6-edit {
+    width: 100% !important;
+  }
+  .FundFormOuter {
+    width: 95vw !important;
+    justify-content: unset !important;
+  }
+  .FundForm {
+    width: 93vw !important;
+  }
+  .profiledata {
+    width: 100% !important;
+    font-size: small !important;
+    padding: 1rem 1rem !important;
+    display: unset !important;
+  }
+  .profile_right_data {
+    width: unset !important;
+    display: unset !important;
+  }
+
   aside {
     position: fixed;
     left: -100%;

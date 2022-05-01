@@ -21,7 +21,6 @@ const Contact = () => {
         },
       });
       const data = await res.json();
-      console.log(data);
       setUserData({
         ...userData,
         name: data.name,
@@ -33,7 +32,7 @@ const Contact = () => {
         throw error;
       }
     } catch (err) {
-      console.log(err);
+      window.alert(err);
       history.push("/login");
     }
   };
@@ -56,7 +55,6 @@ const Contact = () => {
   const contactForm = async (e) => {
     e.preventDefault();
     const { name, email, phone, message } = userData;
-    console.log("hi");
     const res = await fetch("/contact", {
       method: "POST",
       headers: {
@@ -69,11 +67,9 @@ const Contact = () => {
         message,
       }),
     });
-    console.log(res);
     const data = await res.json();
-    console.log("hi");
     if (!data) {
-      console.log("message not sent");
+      window.alert("message not sent");
     } else {
       alert("Message Sent");
       setUserData({ ...userData, message: "" });

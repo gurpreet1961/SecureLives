@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import { NavLink } from "react-router-dom";
 import Logo from "../Images/logo.png";
-import ProfilePic from "../Images/pic.jpeg";
+import ProfilePic from "../Images/avataaars.svg";
 import { useHistory } from "react-router-dom";
 
 import "./Nav.css";
@@ -17,7 +17,6 @@ const Navbar = () => {
   const checkActive = (match, location) => {
     if (!location) return false;
     const { pathname } = location;
-    console.log(pathname);
     return pathname === "/";
   };
   const history = useHistory();
@@ -33,14 +32,13 @@ const Navbar = () => {
         },
       });
       const data = await res.json();
-      console.log(data);
       setUserData(data);
       if (res.status !== 200) {
         const error = new Error(res.error);
         throw error;
       }
     } catch (err) {
-      console.log(err);
+      window.alert(err);
       history.push("/login");
     }
   };
@@ -51,7 +49,6 @@ const Navbar = () => {
 
   return (
     <>
-      {/* <div className="Navcontainer"> */}
       <aside className={menuDisplay}>
         <div className="fixed">
           <div className="Navtop">
@@ -108,9 +105,13 @@ const Navbar = () => {
               <span className="material-icons-sharp">contact_page</span>
               <h3>Contact Us</h3>
             </NavLink>
-            <NavLink className="NavLinkTag" to="/login">
+            {/* <NavLink className="NavLinkTag" to="/login">
               <span className="material-icons-sharp">login</span>
               <h3>Login</h3>
+            </NavLink> */}
+            <NavLink className="NavLinkTag" to="/logout">
+              <span className="material-icons-sharp">logout</span>
+              <h3>Log Out</h3>
             </NavLink>
           </div>
         </div>
@@ -120,18 +121,11 @@ const Navbar = () => {
           <button id="Navmenu-btn" onClick={showMenu}>
             <div className="material-icons-sharp">menu</div>
           </button>
-          {/* <div className="Navtheme-toggler">
-            <span className="material-icons-sharp ">light_mode</span>
-            <span className="material-icons-sharp Navactive">dark_mode</span>
-          </div> */}
           <div className="Navprofile">
             <div className="Navinfo">
               <p style={{ marginBottom: "0", color: "white" }}>
                 Hey, <b> {userData.name}</b>
               </p>
-              {/* <small style={{ color: "white" }} className="Navtext-muted">
-                User
-              </small> */}
             </div>
             <div className="Navprofile-photo">
               <NavLink to="/profile">
@@ -145,100 +139,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      {/* </div> */}
     </>
-    // <>
-    //   <nav className="navbar navbar-expand-lg navbar-light bg-light">
-    //     <div className="container-fluid">
-    //       <NavLink className="navbar-brand" to="#">
-    //         <span style={{ fontSize: "1.5rem", fontWeight: "bold" }}>
-    //           Secure
-    //         </span>
-    //         <span
-    //           style={{
-    //             color: " rgb(112, 176, 231)",
-    //             fontSize: "1.5rem",
-    //             fontWeight: "bold",
-    //           }}
-    //         >
-    //           Lives
-    //         </span>
-    //       </NavLink>
-    //       <button
-    //         className="navbar-toggler"
-    //         type="button"
-    //         data-bs-toggle="collapse"
-    //         data-bs-target="#navbarSupportedContent"
-    //         aria-controls="navbarSupportedContent"
-    //         aria-expanded="false"
-    //         aria-label="Toggle navigation"
-    //       >
-    //         <span className="navbar-toggler-icon"></span>
-    //       </button>
-    //       <div className="collapse navbar-collapse" id="navbarSupportedContent">
-    //         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-    //           <li className="nav-item">
-    //             <NavLink className="nav-link active" aria-current="page" to="/">
-    //               Home
-    //             </NavLink>
-    //           </li>
-    //           <li className="nav-item">
-    //             <NavLink className="nav-link" to="/about">
-    //               About
-    //             </NavLink>
-    //           </li>
-    //           <li className="nav-item dropdown">
-    //             <NavLink
-    //               className="nav-link dropdown-toggle"
-    //               to="#"
-    //               id="navbarDropdown"
-    //               role="button"
-    //               data-bs-toggle="dropdown"
-    //               aria-expanded="false"
-    //             >
-    //               Donation
-    //             </NavLink>
-    //             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-    //               <li>
-    //                 <NavLink className="dropdown-item" to="/fundraise">
-    //                   Fund Raise
-    //                 </NavLink>
-    //               </li>
-    //               <li>
-    //                 <NavLink className="dropdown-item" to="/donate">
-    //                   Donate
-    //                 </NavLink>
-    //               </li>
-    //               <li>
-    //                 <hr className="dropdown-divider" />
-    //               </li>
-    //               <li>
-    //                 <NavLink className="dropdown-item" to="#">
-    //                   New Request
-    //                 </NavLink>
-    //               </li>
-    //             </ul>
-    //           </li>
-    //           <li className="nav-item">
-    //             <NavLink className="nav-link" to="/contact">
-    //               Contact
-    //             </NavLink>
-    //           </li>
-    //           <li className="nav-item">
-    //             <NavLink className="nav-link" to="/login">
-    //               Login
-    //             </NavLink>
-    //           </li>
-    //           <li className="nav-item">
-    //             <NavLink className="nav-link" to="/signup">
-    //               Registraion
-    //             </NavLink>
-    //           </li>
-    //         </ul>
-    //       </div>
-    //     </div>
-    //   </nav>
-    // </>
   );
 };
 

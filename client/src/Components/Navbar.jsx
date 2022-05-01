@@ -5,7 +5,7 @@ import Logo from "../Images/logo.png";
 import ProfilePic from "../Images/avataaars.svg";
 import { useHistory } from "react-router-dom";
 
-import "./Nav.css";
+// import "./Nav.css";
 const Navbar = () => {
   const [menuDisplay, setMenuDisplay] = useState("none");
   const showMenu = () => {

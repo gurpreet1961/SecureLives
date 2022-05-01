@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Login.css";
+// import "./Login.css";
 import loginsvg from "../Images/login.svg";
 import signupsvg from "../Images/register.svg";
 import LoginForm from "./LoginForm";

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import DonationCard from "./DonationCard";
-import "./home.css";
+// import "./home.css";
 const Home = () => {
   const [donationData, setDonationData] = useState([]);
   const userHomePage = async () => {

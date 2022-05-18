@@ -75,6 +75,7 @@ function DonationCard(props) {
           name="Amount"
           onChange={handleInputs}
           placeholder="Enter Amount"
+          autoComplete="off"
           required
         ></input>
         <button onClick={handlePayment}>Donate</button>

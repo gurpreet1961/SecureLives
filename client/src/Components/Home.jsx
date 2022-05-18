@@ -138,60 +138,58 @@ const Home = () => {
                 <thead>
                   <tr>
                     <th>Person Name</th>
-                    <th>Number of Donations</th>
                     <th>Total Amount</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="TableName">Raj</td>
-                    <td className="TableDays">20</td>
-                    <td className="TablePayment">₹200000</td>
+                    <td className="TableName">demo2</td>
+                    <td className="TablePayment">₹100000</td>
                   </tr>
                   <tr>
-                    <td className="TableName">Raj</td>
-                    <td className="TableDays">20</td>
-                    <td className="TablePayment">₹200000</td>
+                    <td className="TableName">Gurpreet</td>
+
+                    <td className="TablePayment">₹50000</td>
                   </tr>
                   <tr>
-                    <td className="TableName">Raj</td>
-                    <td className="TableDays">20</td>
-                    <td className="TablePayment">₹200000</td>
+                    <td className="TableName">Rajnish Choudhary</td>
+
+                    <td className="TablePayment">₹49000</td>
                   </tr>
                   <tr>
-                    <td className="TableName">Raj</td>
-                    <td className="TableDays">20</td>
-                    <td className="TablePayment">₹200000</td>
+                    <td className="TableName">demo1</td>
+
+                    <td className="TablePayment">₹45000</td>
                   </tr>
                   <tr>
-                    <td className="TableName">Raj</td>
-                    <td className="TableDays">20</td>
-                    <td className="TablePayment">₹200000</td>
+                    <td className="TableName">demo3</td>
+
+                    <td className="TablePayment">₹39000</td>
                   </tr>
                   <tr>
-                    <td className="TableName">Raj</td>
-                    <td className="TableDays">20</td>
-                    <td className="TablePayment">₹200000</td>
+                    <td className="TableName">demo5</td>
+
+                    <td className="TablePayment">₹20000</td>
                   </tr>
                   <tr>
-                    <td className="TableName">Raj</td>
-                    <td className="TableDays">20</td>
-                    <td className="TablePayment">₹200000</td>
+                    <td className="TableName">demo4</td>
+
+                    <td className="TablePayment">₹8000</td>
                   </tr>
                   <tr>
-                    <td className="TableName">Raj</td>
-                    <td className="TableDays">20</td>
-                    <td className="TablePayment">₹200000</td>
+                    <td className="TableName">Gurdeep Singh</td>
+
+                    <td className="TablePayment">₹5400</td>
                   </tr>
                   <tr>
-                    <td className="TableName">Raj</td>
-                    <td className="TableDays">20</td>
-                    <td className="TablePayment">₹200000</td>
+                    <td className="TableName">Simran</td>
+
+                    <td className="TablePayment">₹2900</td>
                   </tr>
                   <tr>
-                    <td className="TableName">Raj</td>
-                    <td className="TableDays">20</td>
-                    <td className="TablePayment">₹200000</td>
+                    <td className="TableName">Jasmeet</td>
+
+                    <td className="TablePayment">₹1000</td>
                   </tr>
                 </tbody>
               </table>

@@ -158,6 +158,7 @@ const Fundraise = () => {
                     className="form-control"
                     id="inputFundAmount"
                     placeholder="Amount"
+                    autoComplete="off"
                     required
                   ></input>
                 </div>
@@ -189,6 +190,7 @@ const Fundraise = () => {
                     onChange={imageUpload}
                     className="form-control"
                     id="inputFundImage"
+                    autoComplete="off"
                   />
                 </div>
                 <div className="mb-3">
@@ -234,6 +236,7 @@ Follow these steps:
                     className="form-control"
                     id="inputAccountHolderName"
                     placeholder="Name"
+                    autoComplete="off"
                     required
                   />
                 </div>
@@ -255,6 +258,7 @@ Follow these steps:
                     className="form-control"
                     id="inputAccountNumber"
                     placeholder="Account Number"
+                    autoComplete="off"
                     required
                   />
                 </div>
@@ -275,6 +279,7 @@ Follow these steps:
                     type="text"
                     className="form-control"
                     id="inputIFSCCode"
+                    autoComplete="off"
                     placeholder="IFSC Code"
                     required
                   />
@@ -297,6 +302,7 @@ Follow these steps:
                     className="form-control"
                     id="inputUPIID"
                     placeholder="@UPI"
+                    autoComplete="off"
                     required
                   />
                 </div>
@@ -306,6 +312,7 @@ Follow these steps:
                       className="form-check-input"
                       name="title"
                       type="checkbox"
+                      autoComplete="off"
                       id="gridCheck"
                       required
                     />
@@ -324,6 +331,7 @@ Follow these steps:
                     type="submit"
                     className="btn btn-primary"
                     name="submit"
+                    autoComplete="off"
                     onClick={PostData}
                     value="Submit"
                   />

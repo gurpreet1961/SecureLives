@@ -130,6 +130,7 @@ const Contact = () => {
                     placeholder="Name"
                     onChange={handleInputs}
                     value={userData.name}
+                    autoComplete="off"
                     required
                   />
                   <input
@@ -140,6 +141,7 @@ const Contact = () => {
                     onChange={handleInputs}
                     value={userData.email}
                     placeholder="Email"
+                    autoComplete="off"
                     required
                   />
                   <input
@@ -149,6 +151,7 @@ const Contact = () => {
                     className="contact_form_number input_field"
                     placeholder="Phone Number"
                     onChange={handleInputs}
+                    autoComplete="off"
                     value={userData.phone}
                     required
                   />

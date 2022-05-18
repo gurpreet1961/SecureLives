@@ -38,6 +38,7 @@ function LoginForm() {
               setEmail(e.target.value);
             }}
             value={email}
+            autoComplete="off"
             placeholder="Email"
           />
         </div>
@@ -50,6 +51,7 @@ function LoginForm() {
             onChange={(e) => {
               setPassword(e.target.value);
             }}
+            autoComplete="off"
             value={password}
           />
         </div>
@@ -57,6 +59,7 @@ function LoginForm() {
           type="submit"
           value="Login"
           className="btn solid"
+          autoComplete="off"
           onClick={loginUser}
         />
         {/* <p className="social-text">Or Sign in with social platforms</p>

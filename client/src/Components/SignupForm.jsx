@@ -62,6 +62,7 @@ function SignupForm() {
             value={user.name}
             onChange={handleInputs}
             placeholder="Your Name"
+            autoComplete="off"
             required
           />
         </div>
@@ -74,6 +75,7 @@ function SignupForm() {
             value={user.email}
             onChange={handleInputs}
             placeholder="Email"
+            autoComplete="off"
             required
           />
         </div>
@@ -85,6 +87,7 @@ function SignupForm() {
             value={user.work}
             onChange={handleInputs}
             placeholder="Profession"
+            autoComplete="off"
             required
           />
         </div>
@@ -95,6 +98,7 @@ function SignupForm() {
             type="number"
             value={user.phone}
             onChange={handleInputs}
+            autoComplete="off"
             placeholder="Phone Number"
             required
           />
@@ -107,6 +111,7 @@ function SignupForm() {
             value={user.password}
             onChange={handleInputs}
             placeholder="Password"
+            autoComplete="off"
             required
           />
         </div>
@@ -118,6 +123,7 @@ function SignupForm() {
             value={user.cpassword}
             onChange={handleInputs}
             placeholder="Confirm Password"
+            autoComplete="off"
             required
           />
         </div>
@@ -126,6 +132,7 @@ function SignupForm() {
           className="btn"
           name="signup"
           onClick={PostData}
+          autoComplete="off"
           value="Sign up"
         />
         {/* <p className="social-text">Or Sign up with social platforms</p>

@@ -12,7 +12,10 @@ app.use(express.json());
 //we link the router file to make our route easy
 app.use(require('./router/auth'));
 app.use('/public', express.static('public'));
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:3000', // Allow requests from localhost:3000
+    credentials: true, // Allow sending cookies from the frontend
+}));
 //DB and PORT is in config.env to make then secure(so that no one knows)
 const PORT = process.env.PORT;
 

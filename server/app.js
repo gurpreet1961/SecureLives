@@ -33,6 +33,6 @@ app.get('/signup', (req, res) => {
 
 app.use("/api/payment", paymentRoutes);
 
-app.listen(PORT, "https://securelives.onrender.com", () => {
+app.listen(PORT, () => {
     console.log(`server is running at ${PORT} port`);
 })

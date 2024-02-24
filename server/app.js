@@ -15,7 +15,7 @@ app.use('/public', express.static('public'));
 app.use(cors());
 
 //DB and PORT is in config.env to make then secure(so that no one knows)
-const PORT = config.port || process.env.PORT
+const PORT = process.env.PORT
 
 
 

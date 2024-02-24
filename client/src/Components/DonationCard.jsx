@@ -1,6 +1,10 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { config } from "../App";
+
 function DonationCard(props) {
+	const url = config.endpoint;
+
 	const [Amount, setAmount] = useState();
 	const handleInputs = (e) => {
 		setAmount(e.target.value);
@@ -12,11 +16,11 @@ function DonationCard(props) {
 			currency: data.currency,
 			name: props.accHolderName,
 			description: "Test Transaction",
-			image: `http://localhost:8000/public/uploads/${props.image}`,
+			image: `${url}/public/uploads/${props.image}`,
 			order_id: data.id,
 			handler: async (res) => {
 				try {
-					const verifyUrl = "http://localhost:8000/api/payment/verify";
+					const verifyUrl = `${url}/api/payment/verify`;
 					const { data } = await axios.post(verifyUrl, res);
 					if (data.message === "Payment cerified successfully") {
 						setAmount("");
@@ -35,7 +39,7 @@ function DonationCard(props) {
 	};
 	const handlePayment = async () => {
 		try {
-			const orderUrl = "http://localhost:8000/api/payment/orders";
+			const orderUrl = `${url}/api/payment/orders`;
 			const { data } = await axios.post(orderUrl, { amount: Amount });
 			initPayment(data.data);
 		} catch (err) {

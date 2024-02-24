@@ -10,6 +10,10 @@ import Fundraise from './Components/Fundraise'
 import Donation from './Components/Donation'
 import ErrorPage from './Components/ErrorPage'
 import "./App.css";
+export const config = {
+  endpoint: `https://securelives.onrender.com`,
+
+};
 
 const App = () => {
   return (

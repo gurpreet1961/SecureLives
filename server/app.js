@@ -33,6 +33,6 @@ app.get('/signup', (req, res) => {
 
 app.use("/api/payment", paymentRoutes);
 
-app.listen(PORT, "127.0.0.1", () => {
+app.listen(PORT, () => {
     console.log(`server is running at ${PORT} port`);
 })

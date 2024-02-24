@@ -12,13 +12,10 @@ app.use(express.json());
 //we link the router file to make our route easy
 app.use(require('./router/auth'));
 app.use('/public', express.static('public'));
-app.use(cors({
-    origin: 'https://secure-lives.vercel.app', // Allow requests from your Vercel app
-    credentials: true, // Allow sending cookies from the frontend
-}));
+app.use(cors());
 
 //DB and PORT is in config.env to make then secure(so that no one knows)
-const PORT = process.env.PORT;
+const PORT = config.port || process.env.PORT
 
 
 

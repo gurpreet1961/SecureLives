@@ -13,9 +13,10 @@ app.use(express.json());
 app.use(require('./router/auth'));
 app.use('/public', express.static('public'));
 app.use(cors({
-    origin: 'http://localhost:3000', // Allow requests from localhost:3000
+    origin: 'https://secure-lives.vercel.app', // Allow requests from your Vercel app
     credentials: true, // Allow sending cookies from the frontend
 }));
+
 //DB and PORT is in config.env to make then secure(so that no one knows)
 const PORT = process.env.PORT;
 

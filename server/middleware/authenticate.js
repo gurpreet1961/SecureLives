@@ -1,25 +1,31 @@
 const jwt = require("jsonwebtoken");
 const User = require('../model/userSchema');
 
-// import Cookies from 'js-cookie';
 const Authenticate = async (req, res, next) => {
     try {
-        // console.log(req.cookies);
         const token = req.cookies.jwtoken;
+        if (!token) {
+            return res.status(401).json({ error: 'Unauthorized: No token provided' });
+        }
+
         const verifyToken = jwt.verify(token, process.env.SECRET__KEY);
+        if (!verifyToken) {
+            return res.status(401).json({ error: 'Unauthorized: Invalid token' });
+        }
 
         const rootUser = await User.findOne({ _id: verifyToken._id, "tokens.token": token });
         if (!rootUser) {
-            throw new Error(`User not found`);
+            return res.status(401).json({ error: 'Unauthorized: User not found' });
         }
+
         req.token = token;
         req.rootUser = rootUser;
         req.userID = rootUser._id;
         next();
-
     } catch (error) {
-        console.log(error);
-        res.status(401).send('Unauthorized: No token')
+        console.error('Authentication error:', error.message);
+        return res.status(401).json({ error: 'Unauthorized: Authentication failed' });
     }
 }
+
 module.exports = Authenticate;

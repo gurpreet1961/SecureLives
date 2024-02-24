@@ -30,6 +30,8 @@ router.get('/', (req, res) => {
 
 
 
+
+
 //Using Async Await
 router.post('/register', async (req, res) => {
 
@@ -145,22 +147,23 @@ router.post("/orders", async (req, res) => {
             key_id: process.env.KEY_ID,
             key_secret: process.env.KEY_SECRET,
         });
+
         const options = {
-            amount: req.body.amount * 100,
+            amount: req.body.amount * 100, // Convert amount to paise (1 INR = 100 paise)
             currency: "INR",
             receipt: crypto.randomBytes(10).toString("hex"),
         };
 
         instance.orders.create(options, (err, order) => {
             if (err) {
-                console.log(err);
+                console.error(err);
                 return res.status(500).json({ message: "Something Went Wrong!" });
             }
             res.status(200).json({ data: order });
         });
 
     } catch (error) {
-        console.log(error);
+        console.error(error);
         return res.status(500).json({ message: "Internal Server Error!" });
     }
 });
@@ -172,19 +175,21 @@ router.post("/verify", async (req, res) => {
             razorpay_payment_id,
             razorpay_signature,
         } = req.body;
+
         const sign = razorpay_order_id + "|" + razorpay_payment_id;
-        const expectedSign = crypto.createHmac("sha256", process.env.kEY_SECRET).update(sign.toString()).digest("hex");
+        const expectedSign = crypto.createHmac("sha256", process.env.KEY_SECRET).update(sign.toString()).digest("hex");
 
         if (razorpay_signature === expectedSign) {
-            return res.status(200).json({ message: "Payment cerified successfully" });
+            return res.status(200).json({ message: "Payment verified successfully" });
         } else {
             return res.status(400).json({ message: "Invalid signature sent!" });
         }
     } catch (error) {
-        console.log(error);
+        console.error(error);
         return res.status(500).json({ message: "Internal Server Error!" });
     }
-})
+});
+
 
 
 router.get('/logout', authenticate, (req, res) => {

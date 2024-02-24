@@ -1,0 +1,30 @@
+# Node.js
+node_modules/
+
+# Logs and runtime data
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Dependency directories
+jspm_packages/
+bower_components/
+
+# Output of build tools
+dist/
+build/
+*.out
+*.map
+
+
+
+# IDE files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
